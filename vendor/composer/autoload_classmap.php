@@ -91,6 +91,7 @@ return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'ControllerCommand' => $baseDir . '/app/Commands/ControllerCommand.php',
     'Controllers\\Test' => $baseDir . '/controllers/Test.php',
+    'Controllers\\UpdatePmint' => $baseDir . '/controllers/UpdatePmint.php',
     'CoreCommand' => $baseDir . '/app/Commands/CoreCommand.php',
     'Database\\PcodeDummy' => $baseDir . '/database/dummy/PcodeDummy.php',
     'Delight\\Auth\\Administration' => $vendorDir . '/delight-im/auth/src/Administration.php',

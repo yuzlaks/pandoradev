@@ -7,3 +7,5 @@ $router->get('/', function () {
 $router->get('docs-pmint', function () {
     view('docs-pmint/index');
 });
+
+include 'api.php';
