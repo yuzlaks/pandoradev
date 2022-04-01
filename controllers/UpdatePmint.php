@@ -13,9 +13,8 @@ class UpdatePmint
 
     public function download_pmint()
     {
-        // echo "hai";
 
-        $filePath = dir_asset("uploads/pmint-update/pmint.zip");
+        $filePath = "pmint.zip";
         // Get real path for our folder
         $rootPath = realpath('app');
 
@@ -50,32 +49,17 @@ class UpdatePmint
         // download
 
 
-        // header("Pragma: ");
-        // header("Cache-Control: ");
-        // header('Content-disposition: attachment; filename=files.zip');
-        // header('Content-type: application/zip');
-        // readfile("resources/assets/uploads/pmint-update/pmint.zip");
+        header("Pragma: ");
+        header("Cache-Control: ");
+        header('Content-disposition: attachment; filename=files.zip');
+        header('Content-type: application/zip');
+        readfile("pmint.zip");
 
-        $path = 'resources/assets/uploads/pmint-update/pmint.zip';
-        $type = pathinfo($path, PATHINFO_EXTENSION);
-        $data = file_get_contents($path);
-        $base64 = 'data:zip/' . $type . ';base64,' . base64_encode($data);
-        echo base64_decode($base64);
-
-        $file = "coba.zip";
-        $zip = new ZipArchive();
-        $zip->open($file, ZipArchive::OVERWRITE);
-
-        // Add contents
-        $zip->addFromString('your_file_name', base64_decode($base64));
-
-        // Close and send to users
-        $zip->close();
-        header('Content-Type: application/zip');
-        header('Content-Length: ' . filesize($file));
-        header('Content-Disposition: attachment; filename="file.zip"');
-        readfile($file);
-        unlink($file);
+        // $path = 'resources/assets/uploads/pmint-update/pmint.zip';
+        // $type = pathinfo($path, PATHINFO_EXTENSION);
+        // $data = file_get_contents($path);
+        // $base64 = 'data:zip/' . $type . ';base64,' . base64_encode($data);
+        // echo base64_decode($base64);
         // return $base64;
     }
 
