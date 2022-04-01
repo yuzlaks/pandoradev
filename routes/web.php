@@ -10,4 +10,7 @@ $router->get('docs-pmint', function () {
 
 // include 'api.php';
 
-$router->get('update-pmint', [Controllers\UpdatePmint::class, 'download_pmint']);
+// $router->get('update-pmint', [Controllers\UpdatePmint::class, 'download_pmint']);
+$router->get('coba', function (){
+    echo "hai";
+});
