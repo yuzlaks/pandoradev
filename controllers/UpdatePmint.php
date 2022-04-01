@@ -50,12 +50,17 @@ class UpdatePmint
         // download
 
 
-        header("Pragma: ");
-        header("Cache-Control: ");
-        header('Content-disposition: attachment; filename=files.zip');
-        header('Content-type: application/zip');
-        // header("Content-Length: '.filesize('resources/assets/uploads/pmint-update/pmint.zip').'");
-        readfile("resources/assets/uploads/pmint-update/pmint.zip");
+        // header("Pragma: ");
+        // header("Cache-Control: ");
+        // header('Content-disposition: attachment; filename=files.zip');
+        // header('Content-type: application/zip');
+        // readfile("resources/assets/uploads/pmint-update/pmint.zip");
+
+        $path = 'resources/assets/uploads/pmint-update/pmint.zip';
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+        $data = file_get_contents($path);
+        $base64 = 'data:zip/' . $type . ';base64,' . base64_encode($data);
+        return $base64;
     }
 
 }
