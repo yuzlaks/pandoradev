@@ -13,7 +13,7 @@ class UpdatePmint
 
     public function download_pmint()
     {
-        echo "hai";
+        // echo "hai";
 
         $filePath = dir_asset("uploads/pmint-update/pmint.zip");
         // Get real path for our folder
