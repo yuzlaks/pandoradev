@@ -51,6 +51,8 @@ class UpdatePmint
 
         header('Content-disposition: attachment; filename=files.zip');
         header('Content-type: application/zip');
+        header("Pragma: ");
+        header("Cache-Control: ");
         readfile("resources/assets/uploads/pmint-update/pmint.zip");
     }
 
