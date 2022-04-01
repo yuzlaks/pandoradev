@@ -19,6 +19,7 @@ return array(
     'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-factory/src', $vendorDir . '/psr/http-message/src'),
     'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
     'PhpOption\\' => array($vendorDir . '/phpoption/phpoption/src/PhpOption'),
+    'Phelium\\Component\\' => array($vendorDir . '/phelium/mysql-backup/src'),
     'PHPMailer\\PHPMailer\\' => array($vendorDir . '/phpmailer/phpmailer/src'),
     'MiladRahimi\\PhpRouter\\' => array($vendorDir . '/miladrahimi/phprouter/src'),
     'MiladRahimi\\PhpContainer\\Tests\\' => array($vendorDir . '/miladrahimi/phpcontainer/tests'),
@@ -33,4 +34,5 @@ return array(
     'Delight\\Base64\\' => array($vendorDir . '/delight-im/base64/src'),
     'Delight\\Auth\\' => array($vendorDir . '/delight-im/auth/src'),
     'Carbon\\' => array($vendorDir . '/nesbot/carbon/src/Carbon'),
+    'Apfelbox\\FileDownload\\' => array($vendorDir . '/apfelbox/php-file-download/src'),
 );

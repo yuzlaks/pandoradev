@@ -8,5 +8,6 @@ $baseDir = dirname($vendorDir);
 return array(
     'Viocon' => array($vendorDir . '/usmanhalalit/viocon/src'),
     'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
+    'Skyzyx\\Components\\Mimetypes' => array($vendorDir . '/skyzyx/mimetypes/src'),
     'Pixie' => array($vendorDir . '/usmanhalalit/pixie/src'),
 );
