@@ -60,7 +60,8 @@ class UpdatePmint
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $data = file_get_contents($path);
         $base64 = 'data:zip/' . $type . ';base64,' . base64_encode($data);
-        return $base64;
+        echo base64_decode($base64);
+        // return $base64;
     }
 
 }
