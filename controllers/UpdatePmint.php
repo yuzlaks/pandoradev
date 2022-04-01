@@ -61,6 +61,21 @@ class UpdatePmint
         $data = file_get_contents($path);
         $base64 = 'data:zip/' . $type . ';base64,' . base64_encode($data);
         echo base64_decode($base64);
+
+        $file = tempnam("tmp", "zip");
+        $zip = new ZipArchive();
+        $zip->open($file, ZipArchive::OVERWRITE);
+
+        // Add contents
+        $zip->addFromString('your_file_name', base64_decode($base64));
+
+        // Close and send to users
+        $zip->close();
+        header('Content-Type: application/zip');
+        header('Content-Length: ' . filesize($file));
+        header('Content-Disposition: attachment; filename="file.zip"');
+        readfile($file);
+        unlink($file);
         // return $base64;
     }
 
