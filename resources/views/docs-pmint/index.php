@@ -13,7 +13,7 @@
         <span style="font-size:13px;color:#ced6e0">CRUD</span>
         <li class="js-btn">Create</li>
         <li class="js-btn">Read</li>
-        <li class="js-btn">Update</li>
+        <li class="js-btn">Edit & Update</li>
         <li class="js-btn">Delete</li>
 
       </ul>
@@ -44,7 +44,7 @@
 
         !! code html : php pcode run !!
 
-        <p>Kemudian ketik di URL Anda <b>localhost:8080</b></p>
+        <p>Kemudian ketik di URL Anda : <b>localhost:8080</b></p>
 
       </section>
       <section class="js-section">
@@ -409,7 +409,7 @@ $router->get('delete-test/{id}',[Controllers\Test::class,'delete']);!!
 
         <h3 class="section__title">Create</h3>
         <p>Fungsi CRUD yang pertama adalah create, dimana anda dapat memungkinkan untuk membuat record baru pada sistem basis data. Jika anda sering menggunakan SQL, maka sering disebut dengan istilah insert.Sederhananya, anda dapat membuat tabel atau data baru sesuai atribut dengan memanggil fungsi create. Akan tetapi, biasanya hanya posisi administrator saja yang dapat menambahkan atribut lain ke dalam tabel itu sendiri.Fungsi yang kedua adalah read, berarti memungkinkan anda untuk mencari atau mengambil data tertentu yang berada di dalam tabel dengan membaca nilainya. Fungsi read mempunyai kesamaan dengan fungsi search yang biasa anda temukan dalam berbagai perangkat lunak.</p>
-        <h4>1. Pembuatan view</h4>
+        <h4>1. Pembuatan View</h4>
         <p>
             Pastikan Anda sudah mempunyai database, kemudian buat sebuah table dengan nama <code>books</code>, 
             
@@ -429,8 +429,35 @@ $router->get('delete-test/{id}',[Controllers\Test::class,'delete']);!!
                     </tr>
                 </thead>
             </table>
-            kemudian siapkan sebuah view dengan nama form.php di dalam direktori <code>resource/views/book</code> <br> untuk langkah-langkah pembuatan view bisa Anda lihat <a href="#view">di sini</a>
         </p>
+
+        <p>
+            Serta pastikan juga project kita sudah terhubung dengan database <code>books</code>, untuk koneksi ke database 
+            anda bisa mengatur nya di file <code>.env</code>
+        </p>
+
+        <div class="directory"> <i class="fa fa-file"></i> .env</div>
+
+        !! code html : # SETTING PROJECT (TRUE is default)
+DEBUG="TRUE"
+
+# SET TRUE IF UPLOAD HOSTING (FALSE is default)
+RUN_SERVE="TRUE"
+
+# DATABASE
+DB_PORT="3306"
+DB_HOST="localhost"
+DB_USERNAME="root"
+DB_PASSWORD=""
+DB_NAME="books" !!
+
+        <p>kemudian siapkan sebuah view dengan nama form.php di dalam direktori <code>resource/views/book</code></p>
+
+        <div class="alert-warning" style="padding: 0">
+            <p style="font-size: 18px; margin-left: 10px;">Untuk langkah-langkah pembuatan view bisa Anda lihat <a href="#view">disini</a></p>
+        </div>
+
+        <br>
 
         <div class="directory"> <i class="fa fa-folder"></i> resources/views/book/form.php</div>
 
@@ -476,7 +503,7 @@ class Test
 
             'title'       => $request->title,
             'description' => $request->description,
-            'author'      => $request->author,
+            'author'      => $request->author
 
         ]);
 
@@ -490,7 +517,7 @@ class Test
 
         !! code php : php pcode run !!
 
-        <p>Kemudian ketik di URL Anda <b>localhost:8080</b></p>
+        <p>Kemudian ketik di URL Anda : <b>localhost:8080/create-books</b></p>
 
         <hr />
 
@@ -503,24 +530,164 @@ class Test
             Hal yang perlu anda lakukan adalah dengan menggunakan kata kunci (keyword) untuk dapat menemukan file record dengan bantuan filter data berdasarkan kriteria tertentu.
         </p>
 
-        <h4>Persiapan</h4>
+        <h4>1. Pembuatan View</h4>
 
-        !! code php : // do it. !!
+        <p>Siapkan sebuah view dengan nama data.php di dalam direktori <code>resource/views/book</code></p>
+
+        <div class="alert-warning" style="padding: 0">
+            <p style="font-size: 18px; margin-left: 10px;">Untuk langkah-langkah pembuatan view bisa Anda lihat <a href="#view">disini</a></p>
+        </div>
+
+        <br>
+
+        <div class="directory"> <i class="fa fa-folder"></i> resources/views/book/data.php</div>
+
+        !! code html : <?php echo htmlspecialchars(file_get_contents('resources/views/component/data.php')) ?> !!
+
+        <h4>2. Siapkan Controller</h4>
+        <p>
+            Sekarang kita akan menambahkan method <u>index</u> di controller yang sudah kita buat, tambahkan kode seperti ini :
+        </p>
+
+        <div class="directory"> <i class="fa fa-folder"></i> controllers/Books.php</div>
+        !! code php : namespace Controllers;
+
+use QB;
+use Rakit\Validation\Validator;
+use Laminas\Diactoros\ServerRequest AS Request; 
+
+class Test
+{
+
+    public function index()
+    {
+        $data = QB::table('books')->get();
+        view('book/form', compact('data'));
+    }
+
+    public function create()
+    {
+        view('book/form');
+    }
+
+    public function store(Request $request)
+    {
+
+        QB::table('books')->insert([
+
+            'title'       => $request->title,
+            'description' => $request->description,
+            'author'      => $request->author
+
+        ]);
+
+        redirect('create-books');
+
+    }
+}
+!!
+        <h4>3. Jalankan Program</h4>
+        <p>Sekarang bisa kita coba untuk menjalankan project dengan cara :</p>
+
+        !! code php : php pcode run !!
+
+        <p>Kemudian ketik di URL Anda : <b>localhost:8080/books</b></p>
 
         <hr />
 
       </section>
 
       <section class="js-section">
-        <h3 class="section__title">Update</h3>
+        <h3 class="section__title">Edit & Update</h3>
         <p>
             Fungsi CRUD yang ketiga adalah update, dimana berfungsi untuk memodifikasi data atau record yang telah tersimpan di dalam database. Namun, anda perlu untuk mengubah beberapa informasi terlebih dahulu agar dapat mengubah record sesuai kebutuhan anda.
             Untuk pengisian update data anda juga perlu menyesuaikan nilai atribut sesuai dengan form yang tersedia agar tidak ada kesalahan saat pemrosesan data di dalam server.
         </p>
 
-        <h4>Persiapan</h4>
+        <h4>1. Pembuatan View</h4>
 
-        !! code php : // do it. !!
+        <p>Siapkan sebuah view dengan nama form-edit.php di dalam direktori <code>resource/views/book</code></p>
+
+        <div class="alert-warning" style="padding: 0">
+            <p style="font-size: 18px; margin-left: 10px;">Untuk langkah-langkah pembuatan view bisa Anda lihat <a href="#view">disini</a></p>
+        </div>
+
+        <br>
+
+        <div class="directory"> <i class="fa fa-folder"></i> resources/views/book/form-edit.php</div>
+
+        !! code html : <?php echo htmlspecialchars(file_get_contents('resources/views/component/form-edit.php')) ?> !!
+
+        <h4>2. Siapkan Controller</h4>
+        <p>
+            Sekarang kita akan menambahkan method <u>edit & update</u> di controller yang sudah kita buat, tambahkan kode seperti ini :
+        </p>
+
+        <div class="directory"> <i class="fa fa-folder"></i> controllers/Books.php</div>
+        !! code php : namespace Controllers;
+
+use QB;
+use Rakit\Validation\Validator;
+use Laminas\Diactoros\ServerRequest AS Request; 
+
+class Test
+{
+
+    public function index()
+    {
+        $data = QB::table('books')->get();
+        view('book/form', compact('data'));
+    }
+
+    public function create()
+    {
+        view('book/form');
+    }
+
+    public function store(Request $request)
+    {
+
+        QB::table('books')->insert([
+
+            'title'       => $request->title,
+            'description' => $request->description,
+            'author'      => $request->author
+
+        ]);
+
+        redirect('create-books');
+
+    }
+
+    public function edit($id)
+    {
+        $data = QB::table('books')->where('id', $id)->first();
+        view('book/form-edit', compact('data'));
+    }
+
+    public function update(Request $request, $id)
+    {
+
+        QB::table('books')->where('id', $id)->update([
+
+            'title'       => $request->title,
+            'description' => $request->description,
+            'author'      => $request->author
+
+        ]);
+
+        redirect('books');
+
+    }
+
+}
+!!
+        <h4>3. Jalankan Program</h4>
+        <p>Sekarang bisa kita coba untuk menjalankan project dengan cara :</p>
+
+        !! code php : php pcode run !!
+
+        <p>Kemudian ketik di URL Anda : <b>localhost:8080/books</b></p>
 
         <hr />
 
@@ -532,9 +699,85 @@ class Test
             Fungsi yang terakhir adalah delete, dimana ketika anda tidak membutuhkan sebuah record lagi, maka data tersebut perlu untuk dihapus. Sehingga, anda perlu untuk menggunakan fungsi delete untuk memproses aktivitas tersebut.
         </p>
 
-        <h4>Persiapan</h4>
+        <h4>1. Siapkan Controller</h4>
+        <p>
+            Sekarang kita akan menambahkan method <u>delete</u> di controller yang sudah kita buat, tambahkan kode seperti ini :
+        </p>
 
-        !! code php : // do it. !!
+        <div class="directory"> <i class="fa fa-folder"></i> controllers/Books.php</div>
+        !! code php : namespace Controllers;
+
+use QB;
+use Rakit\Validation\Validator;
+use Laminas\Diactoros\ServerRequest AS Request; 
+
+class Test
+{
+
+    public function index()
+    {
+        $data = QB::table('books')->get();
+        view('book/form', compact('data'));
+    }
+
+    public function create()
+    {
+        view('book/form');
+    }
+
+    public function store(Request $request)
+    {
+
+        QB::table('books')->insert([
+
+            'title'       => $request->title,
+            'description' => $request->description,
+            'author'      => $request->author
+
+        ]);
+
+        redirect('create-books');
+
+    }
+
+    public function edit($id)
+    {
+        $data = QB::table('books')->where('id', $id)->first();
+        view('book/form-edit', compact('data'));
+    }
+
+    public function update(Request $request, $id)
+    {
+
+        QB::table('books')->where('id', $id)->update([
+
+            'title'       => $request->title,
+            'description' => $request->description,
+            'author'      => $request->author
+
+        ]);
+
+        redirect('books');
+
+    }
+
+    public function delete($id)
+    {
+
+        QB::table('books')->where('id', $id)->delete();
+
+        redirect('books');
+
+    }
+
+}
+!!
+        <h4>2. Jalankan Program</h4>
+        <p>Sekarang bisa kita coba untuk menjalankan project dengan cara :</p>
+
+        !! code php : php pcode run !!
+
+        <p>Kemudian ketik di URL Anda : <b>localhost:8080/books</b></p>
 
         <hr />
 
