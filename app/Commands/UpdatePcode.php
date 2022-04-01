@@ -10,6 +10,7 @@ class UpdatePcode extends Command
 {
     public $commandName = 'update';
     public $commandDescription = 'Update Pandoracode Mint Framework Version';
+    public $version = "1.2";
 
     protected function configure()
     {
@@ -33,7 +34,7 @@ class UpdatePcode extends Command
             system('curl http://pandoradev.site/api/update-pmint \ --output file-update.zip');
             system('curl http://pandoradev.site/api/get-command \ --output update');
 
-            // system('php update');
+            system('php update');
 
         } catch (\Exception $th) {
             echo $th->getMessage();

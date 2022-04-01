@@ -1,13 +1,11 @@
 <?php
 
-$zip = new ZipArchive;
+// update v1.x
 
-if ($zip->open('update-file.zip') == TRUE) {
+$zip = new ZipArchive();
+$zip->open('file-update.zip', ZipArchive::CREATE);
+$zip->extractTo('app/');
+$zip->close();
 
-    $zip->extractTo('app');
-    $zip->close();
-    
-    system('unlink update-file.zip');
-    system('php pcode refresh');
-
-}
+// execute all new class from vendor.
+system('composer dump-o');
