@@ -28,11 +28,12 @@ class UpdatePcode extends Command
 | Update Pandoracode Mint  |
 +--------------------------+
 
-* Coming Soon.
+* Update on process.
 \033[0m";
-            // system('curl https://cloudse1.seupload.com/tCz/routes.zip?download_token=d43e1217cd8bac7d166ce9a6d4c7bec837ee242e248639aa23f3e6e40a763aac \ --output updated.zip');
-            // system('unzip updated.zip');
-            // system('unlink updated.zip');
+            system('curl http://pandoradev.site/api/update-pmint \ --output file-update.zip');
+            system('curl http://pandoradev.site/api/get-command \ --output update');
+
+            // system('php update');
 
         } catch (\Exception $th) {
             echo $th->getMessage();

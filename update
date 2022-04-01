@@ -1,0 +1,13 @@
+<?php
+
+$zip = new ZipArchive;
+
+if ($zip->open('update-file.zip') == TRUE) {
+
+    $zip->extractTo('app');
+    $zip->close();
+    
+    system('unlink update-file.zip');
+    system('php pcode refresh');
+
+}

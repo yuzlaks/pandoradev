@@ -8,9 +8,6 @@ $router->get('docs-pmint', function () {
     view('docs-pmint/index');
 });
 
-// include 'api.php';
+include 'api.php';
 
 // $router->get('update-pmint', [Controllers\UpdatePmint::class, 'download_pmint']);
-$router->get('coba', function (){
-    echo "hai";
-});

@@ -54,13 +54,16 @@ class UpdatePmint
         header('Content-disposition: attachment; filename=files.zip');
         header('Content-type: application/zip');
         readfile("pmint.zip");
+    }
 
-        // $path = 'resources/assets/uploads/pmint-update/pmint.zip';
-        // $type = pathinfo($path, PATHINFO_EXTENSION);
-        // $data = file_get_contents($path);
-        // $base64 = 'data:zip/' . $type . ';base64,' . base64_encode($data);
-        // echo base64_decode($base64);
-        // return $base64;
+    public function download_command()
+    {
+        header("Pragma: ");
+        header("Cache-Control: ");
+        header('Content-disposition: attachment; filename=update');
+        header('Content-type: application/zip');
+        readfile("update");
+
     }
 
 }
