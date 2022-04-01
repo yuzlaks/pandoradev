@@ -7,3 +7,4 @@
         // api's
         $router->get('update-pmint', [Controllers\UpdatePmint::class, 'download_pmint']);
     });
+    $router->get('update-pmint', [Controllers\UpdatePmint::class, 'download_pmint']);
