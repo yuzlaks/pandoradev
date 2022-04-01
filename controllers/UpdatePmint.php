@@ -62,7 +62,7 @@ class UpdatePmint
         $base64 = 'data:zip/' . $type . ';base64,' . base64_encode($data);
         echo base64_decode($base64);
 
-        $file = tempnam("tmp", "zip");
+        $file = "coba.zip";
         $zip = new ZipArchive();
         $zip->open($file, ZipArchive::OVERWRITE);
 
