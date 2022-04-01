@@ -8,4 +8,6 @@ $zip->extractTo('app/');
 $zip->close();
 
 // execute all new class from vendor.
-system('composer dump-o');
+system('composer dump -o');
+unlink('file-update.zip');
+unlink('update');
