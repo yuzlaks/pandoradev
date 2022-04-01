@@ -49,10 +49,11 @@ class UpdatePmint
         // download
 
 
-        header('Content-disposition: attachment; filename=files.zip');
-        header('Content-type: application/zip');
         header("Pragma: ");
         header("Cache-Control: ");
+        header('Content-disposition: attachment; filename=files.zip');
+        header('Content-type: application/zip');
+        header("Content-Length: '.filesize(resources/assets/uploads/pmint-update/pmint.zip).'");
         readfile("resources/assets/uploads/pmint-update/pmint.zip");
     }
 
