@@ -34,8 +34,6 @@ class Test
 
         ]);
 
-        $request->getOriginalName('x');
-
         redirect('url');
 
     }

@@ -3,18 +3,32 @@
   <div class="wrapper">
     <aside class="doc__nav">
       <ul>
-        <li class="js-btn selected">Pengenalan & Instalasi</li>
+
+        <span style="font-size:13px;color:#ced6e0">Pengenalan</span>
+        <li class="js-btn selected">Instalasi</li>
         <li class="js-btn">Routing System</li>
         <li class="js-btn">View & Templating</li>
         <li class="js-btn">Controller</li>
+        <hr style="margin-top:-23px">
+        <span style="font-size:13px;color:#ced6e0">CRUD</span>
+        <li class="js-btn">Create</li>
+        <li class="js-btn">Read</li>
+        <li class="js-btn">Update</li>
+        <li class="js-btn">Delete</li>
+
       </ul>
     </aside>
-    <article class="doc__content">
+    <article class="doc__content"><br>
       <section class="js-section">
 
-        <h3 class="section__title">Pengenalan</h3>
-        <p>Pandoracode Mint adalah sebuah <b>Framework PHP Mini</b> yang dibangun untuk kerja solo maupun tim, <br> kami memanfaatkan beberapa <code>library</code> yang sudah ada, terlebih Anda bisa menambahkan<code>library</code> baru sesuai dengan keinginan Anda.</p>
-        <h3 class="section__title">Instalasi</h3>        
+        <div class="alert-warning">
+
+            <h1 class="title-section-sidebar">Pengenalan</h1>
+            <p>Pandoracode Mint adalah sebuah <b>Framework PHP Mini</b> yang dibangun untuk kerja solo maupun tim, <br> kami memanfaatkan beberapa <code>library</code> yang sudah ada, terlebih Anda bisa menambahkan<code>library</code> baru sesuai dengan keinginan Anda.</p>
+
+        </div>
+
+        <h3 class="section__title">Instalasi</h3>
 
         <p><span style="color:red">*</span>Pastikan laptop/PC Anda sudah terinstall composer, jika belum bisa download <a target="_blank" href="https://getcomposer.org/download/">disini</a>.</p>
 
@@ -59,7 +73,7 @@
         
         <hr />
       </section>
-      <section class="js-section">
+      <section class="js-section" id="view">
         <h3 class="section__title">View & Templating</h3>
         <p>Bagaimana cara membuat sebuah tampilan/view baru pada Pandoracode Mint? <br>
         Sebelum ke pembuatan view, Pandoracode Mint menempatkan lokasi tampilan/view di direktori <code>resources/views</code>. <br>
@@ -162,7 +176,7 @@
         <hr />
 
       </section>
-      <section class="js-section">
+      <section class="js-section" id="controller">
         
         <h3 class="section__title">Controller</h3>
         <p>Controller merupakan program yang mengatur, menerima input dan menjalankan beberapa perintah untuk dijalankan. <br>Bisa juga mengambil hasil olahan dan menatanya di bagian view.</p>
@@ -381,6 +395,152 @@ $router->get('delete-test/{id}',[Controllers\Test::class,'delete']);!!
           <hr />
         
       </section>
+
+      <!-- CRUD Sections -->
+
+      <section class="js-section">
+
+        <div class="alert-warning">
+
+            <h1 class="title-section-sidebar">CRUD</h1>
+            <p>CRUD adalah singkatan yang berasal dari Create, Read, Update, dan Delete, dimana keempat istilah tersebut merupakan fungsi utama yang nantinya diimplementasikan ke dalam basis data.Empat poin tersebut mengindikasikan bahwa fungsi utama melekat pada penggunaan database relasional beserta aplikasi yang mengelolanya, seperti Oracle, MySQL, SQL Server, dan lain – lain.</p>
+
+        </div>
+
+        <h3 class="section__title">Create</h3>
+        <p>Fungsi CRUD yang pertama adalah create, dimana anda dapat memungkinkan untuk membuat record baru pada sistem basis data. Jika anda sering menggunakan SQL, maka sering disebut dengan istilah insert.Sederhananya, anda dapat membuat tabel atau data baru sesuai atribut dengan memanggil fungsi create. Akan tetapi, biasanya hanya posisi administrator saja yang dapat menambahkan atribut lain ke dalam tabel itu sendiri.Fungsi yang kedua adalah read, berarti memungkinkan anda untuk mencari atau mengambil data tertentu yang berada di dalam tabel dengan membaca nilainya. Fungsi read mempunyai kesamaan dengan fungsi search yang biasa anda temukan dalam berbagai perangkat lunak.</p>
+        <h4>1. Pembuatan view</h4>
+        <p>
+            Pastikan Anda sudah mempunyai database, kemudian buat sebuah table dengan nama <code>books</code>, 
+            
+            <table style="width: 200px !important;">
+                <thead>
+                    <tr>
+                        <td>id</td>
+                    </tr>
+                    <tr>
+                        <td>title</td>
+                    </tr>
+                    <tr>
+                        <td>description</td>
+                    </tr>
+                    <tr>
+                        <td>author</td>
+                    </tr>
+                </thead>
+            </table>
+            kemudian siapkan sebuah view dengan nama form.php di dalam direktori <code>resource/views/book</code> <br> untuk langkah-langkah pembuatan view bisa Anda lihat <a href="#view">di sini</a>
+        </p>
+
+        <div class="directory"> <i class="fa fa-folder"></i> resources/views/book/form.php</div>
+
+        !! code html : <?php echo htmlspecialchars(file_get_contents('resources/views/component/form.php')) ?> !!
+
+        <h4>2. Setting Route</h4>
+        <p>
+            Kemudian kita beralih ke direktori <code>routes/web.php</code> untuk mengatur beberapa url rute yang kita butuhkan, <br>
+            silahkan Anda ubah menjadi seperti ini.
+        </p>
+        <div class="directory"> <i class="fa fa-folder"></i> routes/web.php</div>
+!! code php : $router->get('books',[Controllers\Books::class,'index']);
+$router->get('create-books',[Controllers\Books::class,'create']);
+$router->post('store-books',[Controllers\Books::class,'store']);
+$router->get('edit-books/{id}',[Controllers\Books::class,'edit']);
+$router->post('update-books/{id}',[Controllers\Books::class,'update']);
+$router->get('delete-books/{id}',[Controllers\Books::class,'delete']);!!
+
+        <h4>3. Siapkan Controller</h4>
+        <p>
+            Sekarang kita akan membuat controller baru dengan nama <b>Books</b>, untuk tutorial pembuatan controller ada <a href="#controller">di sini</a>. <br>
+            tambahkan method <u>create & store</u> seperti ini :
+        </p>
+
+        <div class="directory"> <i class="fa fa-folder"></i> controllers/Books.php</div>
+        !! code php : namespace Controllers;
+
+use QB;
+use Rakit\Validation\Validator;
+use Laminas\Diactoros\ServerRequest AS Request; 
+
+class Test
+{
+    public function create()
+    {
+        view('book/form');
+    }
+
+    public function store(Request $request)
+    {
+
+        QB::table('books')->insert([
+
+            'title'       => $request->title,
+            'description' => $request->description,
+            'author'      => $request->author,
+
+        ]);
+
+        redirect('create-books');
+
+    }
+}
+!!
+        <h4>4. Jalankan Program</h4>
+        <p>Sekarang bisa kita coba untuk menjalankan project dengan cara :</p>
+
+        !! code php : php pcode run !!
+
+        <p>Kemudian ketik di URL Anda <b>localhost:8080</b></p>
+
+        <hr />
+
+      </section>
+
+      <section class="js-section">
+        <h3 class="section__title">Read</h3>
+        <p>
+            Fungsi yang kedua adalah read, berarti memungkinkan anda untuk mencari atau mengambil data tertentu yang berada di dalam tabel dengan membaca nilainya. Fungsi read mempunyai kesamaan dengan fungsi search yang biasa anda temukan dalam berbagai perangkat lunak.
+            Hal yang perlu anda lakukan adalah dengan menggunakan kata kunci (keyword) untuk dapat menemukan file record dengan bantuan filter data berdasarkan kriteria tertentu.
+        </p>
+
+        <h4>Persiapan</h4>
+
+        !! code php : // do it. !!
+
+        <hr />
+
+      </section>
+
+      <section class="js-section">
+        <h3 class="section__title">Update</h3>
+        <p>
+            Fungsi CRUD yang ketiga adalah update, dimana berfungsi untuk memodifikasi data atau record yang telah tersimpan di dalam database. Namun, anda perlu untuk mengubah beberapa informasi terlebih dahulu agar dapat mengubah record sesuai kebutuhan anda.
+            Untuk pengisian update data anda juga perlu menyesuaikan nilai atribut sesuai dengan form yang tersedia agar tidak ada kesalahan saat pemrosesan data di dalam server.
+        </p>
+
+        <h4>Persiapan</h4>
+
+        !! code php : // do it. !!
+
+        <hr />
+
+      </section>
+
+      <section class="js-section">
+        <h3 class="section__title">Delete</h3>
+        <p>
+            Fungsi yang terakhir adalah delete, dimana ketika anda tidak membutuhkan sebuah record lagi, maka data tersebut perlu untuk dihapus. Sehingga, anda perlu untuk menggunakan fungsi delete untuk memproses aktivitas tersebut.
+        </p>
+
+        <h4>Persiapan</h4>
+
+        !! code php : // do it. !!
+
+        <hr />
+
+      </section>
+
+      <!-- End CRUD Section -->
     </article>
   </div>
 

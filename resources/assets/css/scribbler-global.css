@@ -311,3 +311,23 @@ table td:first-child {
     transform: translate3d(0,0,0);
   }
 }
+
+.title-section-sidebar{
+  font-size: 36px !important;
+  color:#2d2d2d !important;
+  margin-bottom: -2px !important;
+  margin-top: -5px !important;
+}
+
+.alert-warning{
+  border-left: 4px solid #ffa502;
+  padding: 18px;
+  border-top: 1px solid #f1f1f1;
+  border-right: 1px solid #f1f1f1;
+  border-bottom: 1px solid #f1f1f1;
+  border-radius: 4px;
+}
+
+a{
+  color:#1e90ff;
+}
