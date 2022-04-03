@@ -33,7 +33,7 @@
   
 	  "prefix": "p:foreach",
   
-	  "body": "!! foreach($$data AS $1) !! \n\n!! endforeach !!"
+	  "body": "!! foreach($$data AS $$key => $1) !! \n\n!! endforeach !!"
   
 	},
 
@@ -161,7 +161,7 @@
 
 		"prefix" : "p:table",
 
-		"body": "<table border='1px'>\n\t<thead>\n\t\t<tr>\n\t\t\t<th>No</th>\n\t\t</tr>\n\t</thead>\n\t<tbody>\n\n\t\t!!foreach($$data AS $$1)!!\n\n\t\t<tr>\n\n\t\t\t<td>{{ $2... }}</td>\n\n\t\t</tr>\n\n\t\t!!endforeach!!\n\n\t</tbody>\n</table>"
+		"body": "<table border='1px'>\n\t<thead>\n\t\t<tr>\n\t\t\t<th>No</th>\n\t\t</tr>\n\t</thead>\n\t<tbody>\n\n\t\t!!foreach($$data AS $$key => $$1)!!\n\n\t\t<tr>\n\n\t\t\t<td>{{ $2... }}</td>\n\n\t\t</tr>\n\n\t\t!!endforeach!!\n\n\t</tbody>\n</table>"
 
 	},
 
