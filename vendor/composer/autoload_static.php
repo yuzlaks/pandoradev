@@ -185,7 +185,7 @@ class ComposerStaticInit2bf5f5ec4006d3e178e4df4b19f3469c
         ),
         'Faker\\' => 
         array (
-            0 => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker',
+            0 => __DIR__ . '/..' . '/fakerphp/faker/src/Faker',
         ),
         'Dotenv\\' => 
         array (
@@ -256,6 +256,7 @@ class ComposerStaticInit2bf5f5ec4006d3e178e4df4b19f3469c
         'ClearViewCommand' => __DIR__ . '/../..' . '/app/Commands/ClearViewCommand.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'ControllerCommand' => __DIR__ . '/../..' . '/app/Commands/ControllerCommand.php',
+        'Controllers\\Api' => __DIR__ . '/../..' . '/controllers/Api.php',
         'Controllers\\Test' => __DIR__ . '/../..' . '/controllers/Test.php',
         'Controllers\\UpdatePmint' => __DIR__ . '/../..' . '/controllers/UpdatePmint.php',
         'CoreCommand' => __DIR__ . '/../..' . '/app/Commands/CoreCommand.php',

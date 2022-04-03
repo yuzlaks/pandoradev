@@ -12,6 +12,7 @@ return array(
     'ClearViewCommand' => $baseDir . '/app/Commands/ClearViewCommand.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'ControllerCommand' => $baseDir . '/app/Commands/ControllerCommand.php',
+    'Controllers\\Api' => $baseDir . '/controllers/Api.php',
     'Controllers\\Test' => $baseDir . '/controllers/Test.php',
     'Controllers\\UpdatePmint' => $baseDir . '/controllers/UpdatePmint.php',
     'CoreCommand' => $baseDir . '/app/Commands/CoreCommand.php',
