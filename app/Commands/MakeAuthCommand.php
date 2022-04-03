@@ -102,6 +102,7 @@ class MakeAuthCommand extends Command
             $this->makeLoginView();
             $this->makeRegisterView();
             $this->rewriteHelper();
+            $this->rewritePackageAuth();
 
             $db->exec($table);
 
@@ -565,5 +566,28 @@ use MiladRahimi\PhpRouter\Router;
 
         fwrite($myfile, $content);
         fclose($myfile);
+    }
+
+    public function rewritePackageAuth()
+    {
+
+        $write_text = '// source : https://github.com/delight-im/PHP-Auth
+        
+            if ($_ENV[`DB_NAME`]) {
+            
+                $db = new \PDO("mysql:dbname=$_ENV[DB_NAME];host=$_ENV[DB_HOST];charset=utf8mb4", "$_ENV[DB_USERNAME]", "$_ENV[DB_PASSWORD]");
+            
+                $auth = new \Delight\Auth\Auth($db);
+                
+            }
+        ';
+
+        $write_text = str_replace("`", "'", $write_text);
+
+        $edit_file = fopen('app/Package/DelightAuth.php', 'w');
+
+        fwrite($edit_file, $write_text);
+        fclose($edit_file);
+
     }
 }
